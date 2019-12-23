@@ -95,7 +95,6 @@ namespace Server
                     if (user.Name == name)
                     {
                         BanMessage(user);
-                        Disconnect(user);
                         user.Disconnect();
                         break;
                     }
@@ -109,14 +108,8 @@ namespace Server
 
         private void BanMessage(Client client)
         {
-            Clients.Remove(client);
             Console.WriteLine($"пользователь забанен {client}");
-        }
-
-        public void Disconnect(Client client)
-        {
             Clients.Remove(client);
-            client.Disconnect();
         }
     }
 }

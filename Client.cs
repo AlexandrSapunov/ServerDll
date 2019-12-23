@@ -15,8 +15,6 @@ namespace Server
         private Thread thread;
         private System.Timers.Timer timer;
 
-        public Server server;
-
         public Client(TcpClient tcp)
         {
             IsEnable = true;
@@ -45,7 +43,7 @@ namespace Server
             Name = GetName();
 
             // После получения имени, проверяем имя на уникальность
-            foreach (var item in server.Clients)
+            foreach (var item in Commands.CommandWorker.server.Clients)
             {
                 if (item.Name == Name)
                 {
@@ -55,7 +53,7 @@ namespace Server
             }
 
             // Если имя уникально, то добавляем в коллекцию подключенных клиентов
-            server.Clients.Add(this);
+            Commands.CommandWorker.server.Clients.Add(this);
 
             FirstConnectTime = DateTime.Now;
             Console.WriteLine($"{Name} подключился к серверу ({Ip})");
@@ -79,8 +77,8 @@ namespace Server
                     else
                     {
                         // Выводим на экран полученное сообщение
-                        Console.WriteLine(message);
-                        server.SendMessage(this, message);
+                        ShowMessage(message);
+                        Commands.CommandWorker.server.SendMessage(this, message);
                     }
                 }
                 catch (Exception)
@@ -119,8 +117,8 @@ namespace Server
                 Send(text);
 
             IsEnable = false;
-            server.Clients.Remove(this);
-
+            Console.WriteLine($"{Name} disconnect");
+            Commands.CommandWorker.server.Clients.Remove(this);
             connection.Close();
             connection.Dispose();
             timer.Stop();
