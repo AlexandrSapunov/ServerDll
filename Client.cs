@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -140,16 +139,6 @@ namespace Server
             string name = Encoding.UTF8.GetString(bufferName, 0, bytesName);
 
             return name;
-        }
-
-        public bool CheckName(List<Client> clients)
-        {
-            foreach (var item in clients)
-            {
-                if (item.Name == Name)
-                    return false;
-            }
-            return true;
         }
     }
 }
