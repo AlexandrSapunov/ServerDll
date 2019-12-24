@@ -1,0 +1,10 @@
+Класс Client
+
+ bool Connect()
+подключается к серверу 
+
+ bool SendMessage(string message)
+отправляет сообщение
+
+ bool Disconnect()
+Отключается от сервера

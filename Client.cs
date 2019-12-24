@@ -43,7 +43,7 @@ namespace Server
             Name = GetName();
 
             // После получения имени, проверяем имя на уникальность
-            foreach (var item in Commands.CommandWorker.server.Clients)
+            foreach (var item in Server.server.Clients)
             {
                 if (item.Name == Name)
                 {
@@ -53,7 +53,7 @@ namespace Server
             }
 
             // Если имя уникально, то добавляем в коллекцию подключенных клиентов
-            Commands.CommandWorker.server.Clients.Add(this);
+            Server.server.Clients.Add(this);
 
             FirstConnectTime = DateTime.Now;
             Console.WriteLine($"{Name} подключился к серверу ({Ip})");
@@ -78,7 +78,7 @@ namespace Server
                     {
                         // Выводим на экран полученное сообщение
                         ShowMessage(message);
-                        Commands.CommandWorker.server.SendMessage(this, message);
+                        Server.server.SendMessage(this, message);
                     }
                 }
                 catch (Exception)
@@ -118,7 +118,7 @@ namespace Server
 
             IsEnable = false;
             Console.WriteLine($"{Name} disconnect");
-            Commands.CommandWorker.server.Clients.Remove(this);
+            Server.server.Clients.Remove(this);
             connection.Close();
             connection.Dispose();
             timer.Stop();

@@ -1,0 +1,30 @@
+Класс Server
+{
+  bool Start()
+ запускает прослушивание подключения клиентов.
+
+  bool Stop()
+ останавливает цикл прослушки подключения клиентов
+ 
+  bool SendMessage(Client author, string message)
+ отправка сообщения от клиента другим клиентам
+	
+  bool SendMessage(string message)
+ отправляет сообщение от сервера всем клиентам которые зарегестрированы на сервере
+
+ List<string> ClientInfo() 
+ выводит список всех подключенных клиентов, ip адрес и время первого подключения
+
+ Пример:
+ var res = server.ClientInfo();
+ foreach(var item in res)
+ {
+   Form.WriteText(item + "\n");
+ }
+
+  bool Ban(string name)
+ отключает от сервера и удаляет клиента из списка
+
+  bool Disconnect(Client client)
+ удаляет клиента из списка и отключает от сервера
+}

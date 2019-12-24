@@ -42,15 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="Commands\CmdInput.cs" />
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\Commands.cs" />
-    <Compile Include="Commands\CommandWorker.cs" />
-    <Compile Include="Commands\SingleAttribute.cs" />
-    <Compile Include="Commands\TypeCommands.cs" />
-    <Compile Include="InfoServer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerWorker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
